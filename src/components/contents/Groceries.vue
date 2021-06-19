@@ -1,7 +1,7 @@
 <template>
   <article>
-    <form class="form-inputs">
-      <input type="text" name="name">
+    <form class="form-inputs" @submit.prevent="groceriesCreate()">
+      <input type="text" name="name" v-model="grocery.name">
       <button class="button-create"><span class="material-icons">edit</span></button>
     </form>
     <div class="div-table">
@@ -75,3 +75,21 @@
     </div>
   </article>
 </template>
+
+<script>
+export default {
+  computed: {
+    grocery() {
+      return this.$store.state.groceries.grocery
+    }
+  },
+  methods: {
+    groceriesCreate() {
+      this.$store.dispatch('groceriesCreate')
+    }
+  },
+  created() {
+    this.grocery.name = ''
+  }
+}
+</script>
