@@ -1,32 +1,26 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        RED
+      </div>
+      <div>
+        <a href="./index.html" class="active" id="menu-a-home"><span class="material-icons-outlined">home</span></a>
+      </div>
+      <div>
+        <a href="./groceries.html" id="menu-a-groceries"><span class="material-icons-outlined">fact_check</span></a>
+      </div>
+      <div class="menu-items">
+        <a href="./items.html" id="menu-a-items"><span class="material-icons">list</span></a>
+        <div><span id="menu-items-counter">1</span></div>
+      </div>
+    </header>
+    <div class="contents">
+      <article class="home">
+        <h1>RED</h1>
+        <h2>Welcome to Refrigerator Expiry Date</h2>
+      </article>
     </div>
-    <router-view/>
+    <footer>© 2021. RED Co. all rights reserved.</footer>
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
