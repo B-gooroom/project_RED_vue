@@ -2,10 +2,7 @@
   <div class="wrap">
     <Header></Header>
     <div class="contents">
-      <article class="home">
-        <h1>RED</h1>
-        <h2>Welcome to Refrigerator Expiry Date</h2>
-      </article>
+      <router-view></router-view>
     </div>
     <Footer></Footer>
   </div>
