@@ -39,6 +39,10 @@ export const moduleGroceries = {
     groceriesUpdate(thisStore, groceryUpdate) {
       thisStore.state.groceries[groceryUpdate.index] = groceryUpdate.grocery
       console.log('Done groceriesUpdate', moduleGroceries.state.groceries)
+    },
+    groceriesDelete(thisStore, index) {
+      thisStore.state.groceries.splice(index, 1)
+      console.log('Done groceriesDelete', moduleGroceries.state.groceries)
     }
   }
 }

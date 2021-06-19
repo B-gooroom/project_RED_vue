@@ -40,7 +40,7 @@
             <td>{{grocery.enter}}</td>
             <td class="td-expire"><input type="date" v-model="grocery.expire" @change="groceriesUpdate(index, grocery)"></td>
             <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
+              <button class="button-delete" @click="groceriesDelete(index)"><span class="material-icons">delete</span></button>
             </td>
           </tr>
         </tbody>
@@ -68,6 +68,9 @@ export default {
         index: index,
         grocery: grocery
       })
+    },
+    groceriesDelete(index) {
+      this.$store.dispatch('groceriesDelete', index)
     }
   },
   created() {
