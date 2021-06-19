@@ -34,38 +34,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr v-for="(grocery, index) in groceries" :key="index">
             <td><input type="checkbox" onchange=""></td>
-            <td>사과</td>
-            <td>2021-01-01</td>
-            <td class="td-expire"><input type="date" value="2021-02-02" onchange=""></td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" onchange=""></td>
-            <td>바나나</td>
-            <td>2021-01-01</td>
-            <td class="td-expire"><input type="date" value="2021-02-02" onchange=""></td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" onchange=""></td>
-            <td>딸기</td>
-            <td>2021-01-01</td>
-            <td class="td-expire"><input type="date" value="2021-02-02" onchange=""></td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" onchange=""></td>
-            <td>키위</td>
-            <td>2021-01-01</td>
-            <td class="td-expire"><input type="date" value="2021-02-02" onchange=""></td>
+            <td>{{grocery.name}}</td>
+            <td>{{grocery.enter}}</td>
+            <td class="td-expire"><input type="date" v-model="grocery.expire" onchange=""></td>
             <td class="td-delete">
               <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
             </td>
@@ -81,6 +54,9 @@ export default {
   computed: {
     grocery() {
       return this.$store.state.groceries.grocery
+      },
+    groceries() {
+      return this.$store.state.groceries.groceries
     }
   },
   methods: {
@@ -90,6 +66,7 @@ export default {
   },
   created() {
     this.grocery.name = ''
+    this.$store.dispatch('groceriesRead')
   }
 }
 </script>
