@@ -35,7 +35,10 @@ export const moduleGroceries = {
       }]
       thisStore.commit('groceriesRead', groceries)
       console.log('Done groceriesRead', moduleGroceries.state.groceries)
-
+    },
+    groceriesUpdate(thisStore, groceryUpdate) {
+      thisStore.state.groceries[groceryUpdate.index] = groceryUpdate.grocery
+      console.log('Done groceriesUpdate', moduleGroceries.state.groceries)
     }
   }
 }

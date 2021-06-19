@@ -38,7 +38,7 @@
             <td><input type="checkbox" onchange=""></td>
             <td>{{grocery.name}}</td>
             <td>{{grocery.enter}}</td>
-            <td class="td-expire"><input type="date" v-model="grocery.expire" onchange=""></td>
+            <td class="td-expire"><input type="date" v-model="grocery.expire" @change="groceriesUpdate(index, grocery)"></td>
             <td class="td-delete">
               <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
             </td>
@@ -62,6 +62,12 @@ export default {
   methods: {
     groceriesCreate() {
       this.$store.dispatch('groceriesCreate')
+    },
+    groceriesUpdate(index, grocery) {
+      this.$store.dispatch('groceriesUpdate', {
+        index: index,
+        grocery: grocery
+      })
     }
   },
   created() {
