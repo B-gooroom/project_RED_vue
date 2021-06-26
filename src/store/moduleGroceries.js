@@ -1,4 +1,5 @@
 import moment from 'moment'
+import axios from 'axios'
 
 export const moduleGroceries = {
   state: {
@@ -16,12 +17,14 @@ export const moduleGroceries = {
   },
   actions: {
     groceriesCreate(thisStore) {
-      thisStore.state.groceries.push({
-        name: thisStore.state.grocery.name,
-        enter: moment().format('YYYY-MM-DD'),
-        expire: moment().add(14, 'days').format('YYYY-MM-DD')
+      thisStore.state.grocery.enter = moment().format('YYYY-MM-DD')
+      thisStore.state.grocery.expire = moment().add(14, 'days').format('YYYY-MM-DD')
+      axios.post('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries.json', thisStore.state.grocery).then(function (response) {
+        console.log('Done groceriesCreate', response)
+        thisStore.dispatch('groceriesRead')
+      }).catch(function (error) {
+        thisStore.dispatch('axiosError', error)
       })
-      console.log('Done groceriesCreate', moduleGroceries.state.groceries)
     },
     groceriesRead(thisStore) {
       const groceries = [{
