@@ -26,12 +26,12 @@ export const moduleGroceries = {
     }
   },
   actions: {
-    groceriesCreate(thisStore) {
+    groceriesCreate(thisStore, thisComponent) {
       thisStore.state.grocery.enter = moment().format('YYYY-MM-DD')
       thisStore.state.grocery.expire = moment().add(14, 'days').format('YYYY-MM-DD')
       axios.post('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries.json', thisStore.state.grocery).then(function (response) {
         console.log('Done groceriesCreate', response)
-        thisStore.dispatch('groceriesRead')
+        thisStore.dispatch('groceriesRead', thisComponent)
       }).catch(function (error) {
         thisStore.dispatch('axiosError', error)
       })
@@ -47,18 +47,18 @@ export const moduleGroceries = {
         thisStore.dispatch('axiosError', error)
       })
     },
-    groceriesUpdate(thisStore, groceryUpdate) {
-      axios.patch('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries.json', groceryUpdate).then(function (response) {
+    groceriesUpdate(thisStore, data) {
+      axios.patch('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries.json', data.groceryUpdate).then(function (response) {
         console.log('Done groceriesUpdate', response)
-        thisStore.dispatch('groceriesRead')
+        thisStore.dispatch('groceriesRead', data.thisComponent)
       }).catch(function (error) {
         thisStore.dispatch('axiosError', error)
       })
     },
-    groceriesDelete(thisStore, index) {
-      axios.delete('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries/' + index + '.json').then(function (response) {
+    groceriesDelete(thisStore, data) {
+      axios.delete('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries/' + data.index + '.json').then(function (response) {
         console.log('Done groceriesDelete', response)
-        thisStore.dispatch('groceriesRead')
+        thisStore.dispatch('groceriesRead', data.thisComponent)
       }).catch(function (error) {
         thisStore.dispatch('axiosError', error)
       })
