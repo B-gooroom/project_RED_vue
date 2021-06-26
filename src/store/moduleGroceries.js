@@ -39,8 +39,12 @@ export const moduleGroceries = {
       console.log('Done groceriesUpdate', moduleGroceries.state.groceries)
     },
     groceriesDelete(thisStore, index) {
-      thisStore.state.groceries.splice(index, 1)
-      console.log('Done groceriesDelete', moduleGroceries.state.groceries)
+      axios.delete('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries/' + index + '.json').then(function (response) {
+        console.log('Done groceriesDelete', response)
+        thisStore.dispatch('groceriesRead')
+      }).catch(function (error) {
+        thisStore.dispatch('axiosError', error)
+      })
     }
   }
 }
