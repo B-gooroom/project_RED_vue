@@ -35,8 +35,12 @@ export const moduleGroceries = {
       })
     },
     groceriesUpdate(thisStore, groceryUpdate) {
-      thisStore.state.groceries[groceryUpdate.index] = groceryUpdate.grocery
-      console.log('Done groceriesUpdate', moduleGroceries.state.groceries)
+      axios.patch('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries.json', groceryUpdate).then(function (response) {
+        console.log('Done groceriesUpdate', response)
+        thisStore.dispatch('groceriesRead')
+      }).catch(function (error) {
+        thisStore.dispatch('axiosError', error)
+      })
     },
     groceriesDelete(thisStore, index) {
       axios.delete('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries/' + index + '.json').then(function (response) {

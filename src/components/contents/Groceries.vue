@@ -64,10 +64,10 @@ export default {
       this.$store.dispatch('groceriesCreate')
     },
     groceriesUpdate(index, grocery) {
-      this.$store.dispatch('groceriesUpdate', {
-        index: index,
-        grocery: grocery
-      })
+      const groceryUpdate = {
+        [index]: grocery
+      }
+      this.$store.dispatch('groceriesUpdate', groceryUpdate)
     },
     groceriesDelete(index) {
       this.$store.dispatch('groceriesDelete', index)
