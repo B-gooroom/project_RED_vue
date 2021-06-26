@@ -1,5 +1,6 @@
 import moment from 'moment'
 import axios from 'axios'
+import _ from 'lodash'
 
 export const moduleGroceries = {
   state: {
@@ -11,8 +12,17 @@ export const moduleGroceries = {
     }
   },
   mutations: {
-    groceriesRead(state, groceries) {
-      state.groceries = groceries
+    groceriesRead(state, data) {
+      for (let key in data.groceries) {
+        const grocery = data.groceries[key];
+        grocery.k = key
+      }
+      const orderName = data.thisComponent.$route.query.orderName
+      const orderType = data.thisComponent.$route.query.orderType
+      console.log(orderName, orderType)
+      data.groceries = _.orderBy(data.groceries, orderName, orderType);
+      console.log(data.thisComponent)
+      state.groceries = data.groceries
     }
   },
   actions: {
@@ -26,10 +36,13 @@ export const moduleGroceries = {
         thisStore.dispatch('axiosError', error)
       })
     },
-    groceriesRead(thisStore) {
+    groceriesRead(thisStore, thisComponent) {
       axios.get('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries.json').then(function (response) {
         console.log('Done groceriesRead', response)
-        thisStore.commit('groceriesRead', response.data)
+        thisStore.commit('groceriesRead', {
+          thisComponent: thisComponent,
+          groceries: response.data
+        })
       }).catch(function (error) {
         thisStore.dispatch('axiosError', error)
       })

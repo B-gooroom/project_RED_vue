@@ -12,8 +12,14 @@
             <th>
               <span class="title-names">
                 Name
-                <span class="material-icons active">arrow_drop_up</span>
-                <span class="material-icons">arrow_drop_down</span>
+                <span class="material-icons" :class="{active: $route.query.orderName === 'name' && $route.query.orderType === 'asc'}"><router-link :to="{name: 'Groceries', query: {
+                  orderName: 'name',
+                  orderType: 'asc'
+                }}" active-class="active">arrow_drop_up</router-link></span>
+                <span class="material-icons" :class="{active: $route.query.orderName === 'name' && $route.query.orderType === 'desc'}"><router-link :to="{name: 'Groceries', query: {
+                  orderName: 'name',
+                  orderType: 'desc'
+                }}" active-class="active">arrow_drop_down</router-link></span>
               </span>
             </th>
             <th>
@@ -51,6 +57,12 @@
 
 <script>
 export default {
+  watch: {
+    '$route.query': function(query, beforeQuery) {
+      console.log(query, beforeQuery)
+      this.$store.dispatch('groceriesRead', this)
+    }
+  },
   computed: {
     grocery() {
       return this.$store.state.groceries.grocery
@@ -74,8 +86,17 @@ export default {
     }
   },
   created() {
+    if (!this.$route.query.orderName) {
+      this.$router.push({
+        name: 'Groceries',
+        query: {
+          orderName: 'name',
+          orderType: 'asc'
+        }
+      })
+    }
     this.grocery.name = ''
-    this.$store.dispatch('groceriesRead')
+    this.$store.dispatch('groceriesRead', this)
   }
 }
 </script>
