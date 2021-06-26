@@ -27,17 +27,12 @@ export const moduleGroceries = {
       })
     },
     groceriesRead(thisStore) {
-      const groceries = [{
-        name: 'apple',
-        enter: moment().format('YYYY-MM-DD'),
-        expire: moment().add(14, 'days').format('YYYY-MM-DD')
-      }, {
-        name: 'banana',
-        enter: moment().format('YYYY-MM-DD'),
-        expire: moment().add(14, 'days').format('YYYY-MM-DD')
-      }]
-      thisStore.commit('groceriesRead', groceries)
-      console.log('Done groceriesRead', moduleGroceries.state.groceries)
+      axios.get('https://tobe-gooroom-default-rtdb.firebaseio.com/groceries.json').then(function (response) {
+        console.log('Done groceriesRead', response)
+        thisStore.commit('groceriesRead', response.data)
+      }).catch(function (error) {
+        thisStore.dispatch('axiosError', error)
+      })
     },
     groceriesUpdate(thisStore, groceryUpdate) {
       thisStore.state.groceries[groceryUpdate.index] = groceryUpdate.grocery
