@@ -44,7 +44,7 @@
               <button class="button-update" @click="modalToggle();"><span class="material-icons">edit_note</span></button>
             </td>
             <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
+              <button class="button-delete" @click="itemsDelete(item.k)"><span class="material-icons">delete</span></button>
             </td>
           </tr>
         </tbody>
