@@ -41,7 +41,7 @@
             <td>{{item.enter}}</td>
             <td>{{item.expire}}</td>
             <td class="td-update">
-              <button class="button-update" @click="modalToggle();"><span class="material-icons">edit_note</span></button>
+              <button class="button-update" @click="modalToggle(item);"><span class="material-icons">edit_note</span></button>
             </td>
             <td class="td-delete">
               <button class="button-delete" @click="itemsDelete(item.k)"><span class="material-icons">delete</span></button>
@@ -59,19 +59,19 @@
               <th>
                 <span>Name</span>
               </th>
-              <td><input type="text" name="item-name" placeholder="Name"></td>
+              <td><input type="text" name="item-name" v-model="item.name" placeholder="Name"></td>
             </tr>
             <tr>
               <th>
                 <span>Enter</span>
               </th>
-              <td><input type="date" name="item-enter" placeholder="YYYY-MM-DD"></td>
+              <td><input type="date" name="item-enter" v-model="item.enter" placeholder="YYYY-MM-DD"></td>
             </tr>
             <tr>
               <th>
                 <span>Expire</span>
               </th>
-              <td><input type="date" name="item-expire" placeholder="YYYY-MM-DD"></td>
+              <td><input type="date" name="item-expire" v-model="item.expire" placeholder="YYYY-MM-DD"></td>
             </tr>
           </tbody>
         </table>
@@ -86,6 +86,15 @@
 
 <script>
 export default {
+  data() {
+    return {
+      item: {
+        name: '',
+        enter: '',
+        expire: ''
+      }
+    }
+  },
   watch: {
     '$route.query': function(query, beforeQuery) {
       console.log(query, beforeQuery)
@@ -93,9 +102,6 @@ export default {
     }
   },
   computed: {
-    item() {
-      return this.$store.state.items.item
-      },
     items() {
       return this.$store.state.items.items
     }
@@ -116,9 +122,14 @@ export default {
         thisComponent: this
       })
     },
-    modalToggle() {
+    modalToggle(item) {
       document.body.classList.toggle('o-hidden');
       document.getElementsByClassName('modal-background')[0].classList.toggle('active');
+      if (item !== undefined) {
+        this.item.name = item.name
+        this.item.enter = item.enter
+        this.item.expire = item.expire
+      }
     }
   },
   created() {
