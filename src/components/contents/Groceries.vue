@@ -89,7 +89,11 @@ export default {
     },
     groceriesUpdate(index, grocery) {
       const groceryUpdate = {
-        [index]: grocery
+        [index]: {
+          name: grocery.name,
+          enter: grocery.enter,
+          expire: grocery.expire
+        }
       }
       this.$store.dispatch('groceriesUpdate', {
         groceryUpdate: groceryUpdate,

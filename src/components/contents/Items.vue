@@ -85,6 +85,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   data() {
     return {
@@ -108,10 +110,13 @@ export default {
   },
   methods: {
     itemsUpdate() {
+      const item = _.cloneDeep(this.item)
+      // console.log(_.isEqual(this.item, item))
+      delete item.k
+      // console.log(_.isEqual(this.item, item))
       const itemUpdate = {
-        [this.item.k]: this.item
+        [this.item.k]: item
       }
-      delete this.item.k
       this.$store.dispatch('itemsUpdate', {
         itemUpdate: itemUpdate,
         thisComponent: this
