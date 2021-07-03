@@ -53,7 +53,7 @@
         </thead>
         <tbody>
           <tr v-for="(grocery, index) in groceries" :key="index">
-            <td><input type="checkbox" onchange=""></td>
+            <td><input type="checkbox" @change="itemsCreate($event, grocery)"></td>
             <td>{{grocery.name}}</td>
             <td>{{grocery.enter}}</td>
             <td class="td-expire"><input type="date" v-model="grocery.expire" @change="groceriesUpdate(grocery.k, grocery)"></td>
@@ -100,6 +100,13 @@ export default {
       this.$store.dispatch('groceriesDelete', {
         index: index,
         thisComponent: this
+      })
+    },
+    itemsCreate($event, grocery) {
+      this.$store.dispatch('itemsCreate', {
+        grocery: grocery,
+        thisComponent: this,
+        $event: $event
       })
     }
   },

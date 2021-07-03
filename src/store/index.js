@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { moduleGroceries } from './moduleGroceries.js'
+import { moduleItems } from './moduleItems.js'
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    groceries: moduleGroceries
+    groceries: moduleGroceries,
+    items: moduleItems
   }
 })
