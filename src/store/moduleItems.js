@@ -13,14 +13,18 @@ export const moduleItems = {
   },
   mutations: {
     itemsRead(state, data) {
+      const searchItems = []
       for (let key in data.items) {
         const item = data.items[key];
         item.k = key
+        if (!data.thisComponent.q || item.name.indexOf(data.thisComponent.q) >= 0) {
+          searchItems.push(item)
+        }
       }
       const orderName = data.thisComponent.$route.query.orderName
       const orderType = data.thisComponent.$route.query.orderType
       console.log(orderName, orderType)
-      data.items = _.orderBy(data.items, orderName, orderType);
+      data.items = _.orderBy(searchItems, orderName, orderType);
       console.log(data.thisComponent)
       state.items = data.items
     }

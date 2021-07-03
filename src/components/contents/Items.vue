@@ -1,7 +1,7 @@
 <template>
   <article>
-    <form class="form-inputs">
-      <input type="text" name="q">
+    <form class="form-inputs" @submit.prevent="itemsRead()">
+      <input type="text" name="q" v-model="q">
       <button class="button-search"><span class="material-icons">search</span></button>
     </form>
     <div class="div-table">
@@ -94,7 +94,8 @@ export default {
         name: '',
         enter: '',
         expire: ''
-      }
+      },
+      q: ''
     }
   },
   watch: {
@@ -127,6 +128,9 @@ export default {
         index: index,
         thisComponent: this
       })
+    },
+    itemsRead() {
+      this.$store.dispatch('itemsRead', this)
     },
     modalToggle(item) {
       document.body.classList.toggle('o-hidden');
