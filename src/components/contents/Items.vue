@@ -35,193 +35,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>사과</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
+          <tr v-for="(item, index) in items" :key="index">
+            <td>{{index+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.enter}}</td>
+            <td>{{item.expire}}</td>
             <td class="td-update">
               <button class="button-update" @click="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>바나나</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>딸기</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>키위</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>사과</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>바나나</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>딸기</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>키위</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>사과</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>바나나</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>딸기</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>키위</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>사과</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>바나나</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>딸기</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
-            </td>
-            <td class="td-delete">
-              <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>키위</td>
-            <td>2021-01-01</td>
-            <td>2021-02-02</td>
-            <td class="td-update">
-              <button class="button-update" onclick="modalToggle();"><span class="material-icons">edit_note</span></button>
             </td>
             <td class="td-delete">
               <button class="button-delete" onclick=""><span class="material-icons">delete</span></button>
@@ -266,11 +86,53 @@
 
 <script>
 export default {
+  watch: {
+    '$route.query': function(query, beforeQuery) {
+      console.log(query, beforeQuery)
+      this.$store.dispatch('itemsRead', this)
+    }
+  },
+  computed: {
+    item() {
+      return this.$store.state.items.item
+      },
+    items() {
+      return this.$store.state.items.items
+    }
+  },
   methods: {
+    itemsUpdate(index, item) {
+      const itemUpdate = {
+        [index]: item
+      }
+      this.$store.dispatch('itemsUpdate', {
+        itemUpdate: itemUpdate,
+        thisComponent: this
+        })
+    },
+    itemsDelete(index) {
+      this.$store.dispatch('itemsDelete', {
+        index: index,
+        thisComponent: this
+      })
+    },
     modalToggle() {
       document.body.classList.toggle('o-hidden');
       document.getElementsByClassName('modal-background')[0].classList.toggle('active');
     }
+  },
+  created() {
+    if (!this.$route.query.orderName) {
+      this.$router.push({
+        name: 'Items',
+        query: {
+          orderName: 'name',
+          orderType: 'asc'
+        }
+      })
+    }
+    // this.item.name = ''
+    this.$store.dispatch('itemsRead', this)
   }
 }
 </script>
