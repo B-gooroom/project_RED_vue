@@ -59,6 +59,7 @@ export const moduleItems = {
       axios.patch('https://tobe-gooroom-default-rtdb.firebaseio.com/items.json', data.itemUpdate).then(function (response) {
         console.log('Done itemsUpdate', response)
         thisStore.dispatch('itemsRead', data.thisComponent)
+        data.thisComponent.modalToggle()
       }).catch(function (error) {
         thisStore.dispatch('axiosError', error)
       })

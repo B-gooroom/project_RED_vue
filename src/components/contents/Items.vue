@@ -76,8 +76,8 @@
           </tbody>
         </table>
         <div class="modal-footer">
-          <button class="button-close" @click="modalToggle(); return false;"><span class="material-icons">close</span></button>
-          <button class="button-update" onclick="return false;"><span class="material-icons">edit_note</span></button>
+          <button class="button-close" @click.prevent="modalToggle()"><span class="material-icons">close</span></button>
+          <button class="button-update" @click.prevent="itemsUpdate()"><span class="material-icons">edit_note</span></button>
         </div>
       </form>
     </div>
@@ -107,10 +107,11 @@ export default {
     }
   },
   methods: {
-    itemsUpdate(index, item) {
+    itemsUpdate() {
       const itemUpdate = {
-        [index]: item
+        [this.item.k]: this.item
       }
+      delete this.item.k
       this.$store.dispatch('itemsUpdate', {
         itemUpdate: itemUpdate,
         thisComponent: this
@@ -129,6 +130,7 @@ export default {
         this.item.name = item.name
         this.item.enter = item.enter
         this.item.expire = item.expire
+        this.item.k = item.k
       }
     }
   },
