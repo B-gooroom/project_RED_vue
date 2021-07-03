@@ -101,6 +101,7 @@ export default {
   watch: {
     '$route.query': function(query, beforeQuery) {
       console.log(query, beforeQuery)
+      this.q = query.q || ''
       this.$store.dispatch('itemsRead', this)
     }
   },
@@ -130,7 +131,11 @@ export default {
       })
     },
     itemsRead() {
-      this.$store.dispatch('itemsRead', this)
+      this.$router.push({name: 'Items', query: {
+        q: this.q,
+        orderName: this.$route.query.orderName,
+        orderType: this.$route.query.orderType
+      }})
     },
     modalToggle(item) {
       document.body.classList.toggle('o-hidden');
@@ -154,6 +159,7 @@ export default {
       })
     }
     // this.item.name = ''
+    this.q = this.$route.query.q || ''
     this.$store.dispatch('itemsRead', this)
   }
 }
