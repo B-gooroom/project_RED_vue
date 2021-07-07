@@ -12,22 +12,40 @@
             <th>
               <span class="title-names">
                 Name
-                <span class="material-icons active">arrow_drop_up</span>
-                <span class="material-icons">arrow_drop_down</span>
+                <span class="material-icons" :class="{active: $route.query.orderName === 'name' && $route.query.orderType === 'asc'}"><router-link :to="{name: 'Items', query: {
+                  orderName: 'name',
+                  orderType: 'asc'
+                }}" active-class="active">arrow_drop_up</router-link></span>
+                <span class="material-icons" :class="{active: $route.query.orderName === 'name' && $route.query.orderType === 'desc'}"><router-link :to="{name: 'Items', query: {
+                  orderName: 'name',
+                  orderType: 'desc'
+                }}" active-class="active">arrow_drop_down</router-link></span>
               </span>
             </th>
             <th>
               <span class="title-names">
                 Enter
-                <span class="material-icons">arrow_drop_up</span>
-                <span class="material-icons">arrow_drop_down</span>
+                <span class="material-icons" :class="{active: $route.query.orderName === 'enter' && $route.query.orderType === 'asc'}"><router-link :to="{name: 'Items', query: {
+                  orderName: 'enter',
+                  orderType: 'asc'
+                }}" active-class="active">arrow_drop_up</router-link></span>
+                <span class="material-icons" :class="{active: $route.query.orderName === 'enter' && $route.query.orderType === 'desc'}"><router-link :to="{name: 'Items', query: {
+                  orderName: 'enter',
+                  orderType: 'desc'
+                }}" active-class="active">arrow_drop_down</router-link></span>
               </span>
             </th>
             <th>
               <span class="title-names">
                 Expire
-                <span class="material-icons">arrow_drop_up</span>
-                <span class="material-icons">arrow_drop_down</span>
+                <span class="material-icons" :class="{active: $route.query.orderName === 'expire' && $route.query.orderType === 'asc'}"><router-link :to="{name: 'Items', query: {
+                  orderName: 'expire',
+                  orderType: 'asc'
+                }}" active-class="active">arrow_drop_up</router-link></span>
+                <span class="material-icons" :class="{active: $route.query.orderName === 'expire' && $route.query.orderType === 'desc'}"><router-link :to="{name: 'Items', query: {
+                  orderName: 'expire',
+                  orderType: 'desc'
+                }}" active-class="active">arrow_drop_down</router-link></span>
               </span>
             </th>
             <th>Edit</th>
