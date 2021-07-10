@@ -50,14 +50,18 @@ export const moduleItems = {
       }
     },
     itemsRead(thisStore, thisComponent) {
-      axios.get(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items.json`).then(function (response) {
-        console.log('Done itemsRead', response)
-        thisStore.commit('itemsRead', {
-          thisComponent: thisComponent,
-          items: response.data
+      moduleMembers.state.promise[0] = new Promise(function (resolve, reject) {
+        axios.get(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items.json`).then(function (response) {
+          console.log('Done itemsRead', response)
+          thisStore.commit('itemsRead', {
+            thisComponent: thisComponent,
+            items: response.data
+          })
+          resolve(response.data)
+        }).catch(function (error) {
+          thisStore.dispatch('axiosError', error)
+          reject(error)
         })
-      }).catch(function (error) {
-        thisStore.dispatch('axiosError', error)
       })
     },
     itemsUpdate(thisStore, data) {

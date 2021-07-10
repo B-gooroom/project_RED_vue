@@ -17,6 +17,7 @@ export const moduleGroceries = {
       for (let key in data.groceries) {
         const grocery = data.groceries[key];
         grocery.k = key
+        grocery.checked = false
       }
       const orderName = data.thisComponent.$route.query.orderName
       const orderType = data.thisComponent.$route.query.orderType
@@ -38,14 +39,18 @@ export const moduleGroceries = {
       })
     },
     groceriesRead(thisStore, thisComponent) {
-      axios.get(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/groceries.json`).then(function (response) {
-        console.log('Done groceriesRead', response)
-        thisStore.commit('groceriesRead', {
-          thisComponent: thisComponent,
-          groceries: response.data
+      moduleMembers.state.promise[1] = new Promise(function (resolve, reject) {
+        axios.get(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/groceries.json`).then(function (response) {
+          console.log('Done groceriesRead', response)
+          thisStore.commit('groceriesRead', {
+            thisComponent: thisComponent,
+            groceries: response.data
+          })
+          resolve(response.data)
+        }).catch(function (error) {
+          thisStore.dispatch('axiosError', error)
+          reject(error)
         })
-      }).catch(function (error) {
-        thisStore.dispatch('axiosError', error)
       })
     },
     groceriesUpdate(thisStore, data) {
