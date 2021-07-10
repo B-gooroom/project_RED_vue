@@ -11,7 +11,7 @@ export const moduleMembers = {
   mutations: {
     membersOnAuthStateChanged(state, firebaseUser) {
       state.uid = firebaseUser.uid
-      state.name = firebaseUser.displayName
+      state.name = firebaseUser.displayName || 'Guest'
     }
   },
   actions: {

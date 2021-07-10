@@ -22,7 +22,7 @@
       <a href="#" id="menu-a-account" @click.prevent="accountToggle()">
         <span class="material-icons-outlined">account_circle</span>
         <ul class="account-menu">
-          <li v-if="!member.uid">Guest</li>
+          <li v-if="!member.uid" @click="emailSignin()">Guest</li>
           <li v-if="!member.uid" @click="googleLogin()">Login</li>
           <li v-if="member.uid">Hello {{ member.name }}</li>
           <li v-if="member.uid" @click="googleLogout()">Logout</li>
@@ -51,6 +51,16 @@ export default {
     },
     googleLogout() {
       firebase.auth().signOut()
+    },
+    emailSignin() {
+      // firebase.auth().createUserWithEmailAndPassword('guest@firebaseapp.com', 'guestguest').catch((error) => {
+      //   console.error(error)
+      //   alert(error.message)
+      // })
+      firebase.auth().signInWithEmailAndPassword('guest@firebaseapp.com', 'guestguest').catch((error) => {
+        console.error(error)
+        alert(error.message)
+      })
     }
   },
   created() {
