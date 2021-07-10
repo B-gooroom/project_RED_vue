@@ -125,7 +125,7 @@ export default {
       })
     }
     this.grocery.name = ''
-    this.$store.dispatch('groceriesRead', this)
+    // this.$store.dispatch('groceriesRead', this)
   }
 }
 </script>

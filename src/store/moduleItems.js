@@ -1,6 +1,7 @@
 // import moment from 'moment'
 import axios from 'axios'
 import _ from 'lodash'
+import { moduleMembers } from './moduleMembers'
 
 export const moduleItems = {
   state: {
@@ -38,18 +39,18 @@ export const moduleItems = {
           enter: data.grocery.enter,
           expire: data.grocery.expire
         },
-          axios.patch('https://tobe-gooroom-default-rtdb.firebaseio.com/items.json', groceryUpdate).then(function (response) {
+          axios.patch(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items.json`, groceryUpdate).then(function (response) {
             console.log('Done itemsCreate', response.data);
           });
       } else {
         const key = data.grocery.k
-        axios.delete('https://tobe-gooroom-default-rtdb.firebaseio.com/items/' + key + '.json').then(function (response) {
+        axios.delete(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items${key}.json`).then(function (response) {
           console.log('Done itemsDelete', response.data);
         });
       }
     },
     itemsRead(thisStore, thisComponent) {
-      axios.get('https://tobe-gooroom-default-rtdb.firebaseio.com/items.json').then(function (response) {
+      axios.get(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items.json`).then(function (response) {
         console.log('Done itemsRead', response)
         thisStore.commit('itemsRead', {
           thisComponent: thisComponent,
@@ -60,7 +61,7 @@ export const moduleItems = {
       })
     },
     itemsUpdate(thisStore, data) {
-      axios.patch('https://tobe-gooroom-default-rtdb.firebaseio.com/items.json', data.itemUpdate).then(function (response) {
+      axios.patch(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items.json`, data.itemUpdate).then(function (response) {
         console.log('Done itemsUpdate', response)
         thisStore.dispatch('itemsRead', data.thisComponent)
         data.thisComponent.modalToggle()
@@ -69,7 +70,7 @@ export const moduleItems = {
       })
     },
     itemsDelete(thisStore, data) {
-      axios.delete('https://tobe-gooroom-default-rtdb.firebaseio.com/items/' + data.index + '.json').then(function (response) {
+      axios.delete(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items${data.index}.json`).then(function (response) {
         console.log('Done itemsDelete', response)
         thisStore.dispatch('itemsRead', data.thisComponent)
       }).catch(function (error) {

@@ -178,7 +178,7 @@ export default {
     }
     // this.item.name = ''
     this.q = this.$route.query.q || ''
-    this.$store.dispatch('itemsRead', this)
+    // this.$store.dispatch('itemsRead', this)
   }
 }
 </script>

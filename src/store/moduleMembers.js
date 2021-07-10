@@ -15,11 +15,13 @@ export const moduleMembers = {
     }
   },
   actions: {
-    membersOnAuthStateChanged({ commit }) {
+    membersOnAuthStateChanged({ commit, dispatch }, thisComponent) {
       firebase.auth().onAuthStateChanged(function (firebaseUser) {
         console.log(firebaseUser)
         if (firebaseUser) {
           commit('membersOnAuthStateChanged', firebaseUser)
+          dispatch('groceriesRead', thisComponent)
+          dispatch('itemsRead', thisComponent)
         } else {
           commit('membersOnAuthStateChanged', {
             uid: null,
