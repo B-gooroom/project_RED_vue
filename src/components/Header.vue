@@ -25,7 +25,7 @@
           <li v-if="!member.uid">Guest</li>
           <li v-if="!member.uid" @click="googleLogin()">Login</li>
           <li v-if="member.uid">Hello {{ member.name }}</li>
-          <li v-if="member.uid">Logout</li>
+          <li v-if="member.uid" @click="googleLogout()">Logout</li>
         </ul>
       </a>
     </div>
@@ -43,13 +43,15 @@ export default {
   },
   methods: {
     accountToggle() {
-      console.log(this.member)
       document.getElementsByClassName('account-menu')[0].classList.toggle('active')
     },
     googleLogin() {
       const provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithPopup(provider)
-    }    
+    },
+    googleLogout() {
+      firebase.auth().signOut()
+    }
   },
   created() {
     this.$store.dispatch('membersOnAuthStateChanged', this)

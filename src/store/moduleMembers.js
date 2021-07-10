@@ -21,7 +21,10 @@ export const moduleMembers = {
         if (firebaseUser) {
           commit('membersOnAuthStateChanged', firebaseUser)
         } else {
-          document.getElementById('login-display').innerHTML = ''
+          commit('membersOnAuthStateChanged', {
+            uid: null,
+            name: null
+          })
         }
       })
     }
