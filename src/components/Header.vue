@@ -15,7 +15,7 @@
     <div class="menu-items">
       <!-- <a href="./items.html" id="menu-a-items"><span class="material-icons">list</span></a> -->
       <router-link :to="{name: 'Items'}" active-class="active"><span class="material-icons">list</span></router-link>
-      <div><span id="menu-items-counter">1</span></div>
+      <div><span id="menu-items-counter">{{ count }}</span></div>
     </div>
     <div class="empty"></div>
     <div>
@@ -39,6 +39,9 @@ export default {
   computed: {
     member() {
       return this.$store.state.members
+    },
+    count() {
+      return this.$store.state.items.count
     }
   },
   methods: {

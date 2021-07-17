@@ -1,4 +1,4 @@
-// import moment from 'moment'
+import moment from 'moment'
 import axios from 'axios'
 import _ from 'lodash'
 import { moduleGroceries } from './moduleGroceries'
@@ -11,17 +11,20 @@ export const moduleItems = {
       name: '',
       enter: '',
       expire: ''
-    }
+    },
+    count: 0
   },
   mutations: {
     itemsRead(state, data) {
       const searchItems = []
+      state.count = 0
       for (let key in data.items) {
         const item = data.items[key];
         item.k = key
         if (!data.thisComponent.q || item.name.indexOf(data.thisComponent.q) >= 0) {
           searchItems.push(item)
         }
+        if (moment().format('YYYY-MM-DD') > item.expire) state.count++
       }
       const orderName = data.thisComponent.$route.query.orderName
       const orderType = data.thisComponent.$route.query.orderType
