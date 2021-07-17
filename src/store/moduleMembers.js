@@ -6,8 +6,7 @@ import firebase from 'firebase/app'
 export const moduleMembers = {
   state: {
     uid: null,
-    name: null,
-    promise: []
+    name: null
   },
   mutations: {
     membersOnAuthStateChanged(state, firebaseUser) {

@@ -10,7 +10,8 @@ export const moduleGroceries = {
       name: '',
       enter: '',
       expire: ''
-    }
+    },
+    promise: []
   },
   mutations: {
     groceriesRead(state, data) {
@@ -39,7 +40,7 @@ export const moduleGroceries = {
       })
     },
     groceriesRead(thisStore, thisComponent) {
-      moduleMembers.state.promise[1] = new Promise(function (resolve, reject) {
+      thisStore.state.promise[1] = new Promise(function (resolve, reject) {
         axios.get(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/groceries.json`).then(function (response) {
           console.log('Done groceriesRead', response)
           thisStore.commit('groceriesRead', {
@@ -52,7 +53,7 @@ export const moduleGroceries = {
           reject(error)
         })
       }),
-        Promise.all(moduleMembers.state.promise).then(function (result) {
+        Promise.all(thisStore.state.promise).then(function (result) {
           for (let g in result[1]) {
             const grocery = result[1][g];
             for (let i in result[0]) {

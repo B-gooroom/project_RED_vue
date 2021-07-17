@@ -1,6 +1,7 @@
 // import moment from 'moment'
 import axios from 'axios'
 import _ from 'lodash'
+import { moduleGroceries } from './moduleGroceries'
 import { moduleMembers } from './moduleMembers'
 
 export const moduleItems = {
@@ -50,7 +51,7 @@ export const moduleItems = {
       }
     },
     itemsRead(thisStore, thisComponent) {
-      moduleMembers.state.promise[0] = new Promise(function (resolve, reject) {
+      moduleGroceries.state.promise[0] = new Promise(function (resolve, reject) {
         axios.get(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items.json`).then(function (response) {
           console.log('Done itemsRead', response)
           thisStore.commit('itemsRead', {
