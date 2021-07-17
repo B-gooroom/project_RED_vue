@@ -51,7 +51,20 @@ export const moduleGroceries = {
           thisStore.dispatch('axiosError', error)
           reject(error)
         })
-      })
+      }),
+        Promise.all(moduleMembers.state.promise).then(function (result) {
+          for (let g in result[1]) {
+            const grocery = result[1][g];
+            for (let i in result[0]) {
+              const item = result[0][i];
+              if (grocery.k === item.k) {
+                grocery.checked = true
+              }
+            }
+          }
+        }).catch(function (error) {
+          console.error(error);
+        })
     },
     groceriesUpdate(thisStore, data) {
       axios.patch(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/groceries.json`, data.groceryUpdate).then(function (response) {

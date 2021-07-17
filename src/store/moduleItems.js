@@ -44,7 +44,7 @@ export const moduleItems = {
           });
       } else {
         const key = data.grocery.k
-        axios.delete(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items${key}.json`).then(function (response) {
+        axios.delete(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items/${key}.json`).then(function (response) {
           console.log('Done itemsDelete', response.data);
         });
       }
@@ -74,7 +74,7 @@ export const moduleItems = {
       })
     },
     itemsDelete(thisStore, data) {
-      axios.delete(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items${data.index}.json`).then(function (response) {
+      axios.delete(`https://tobe-gooroom-default-rtdb.firebaseio.com/${moduleMembers.state.uid}/items/${data.index}.json`).then(function (response) {
         console.log('Done itemsDelete', response)
         thisStore.dispatch('itemsRead', data.thisComponent)
       }).catch(function (error) {
