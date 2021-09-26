@@ -41,15 +41,15 @@ export const moduleMembers = {
         }
       })
     },
-    membersJwtLogin() {
-      debugger
+    membersJwtLogin({ state }) {
+      // debugger
       const member = {
         name: '홍길동',
-        age: 20
+        age: 39
       };
       axios.post('http://localhost:3100/api/v1/members/login', member).then(function (response) {
         axiosDefaultsHeaders(response.data.token);
-        // TODO: 로그인 구현
+        state.uid = response.data.token
       });
     }
   }

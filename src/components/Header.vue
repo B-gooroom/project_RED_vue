@@ -22,10 +22,10 @@
       <a href="#" id="menu-a-account" @click.prevent="accountToggle()">
         <span class="material-icons-outlined">account_circle</span>
         <ul class="account-menu">
-          <li v-if="!localStorage.getItem('x-jwt-token')" @click="membersJwtLogin()">Guest</li>
-          <li v-if="!localStorage.getItem('x-jwt-token')" @click="googleLogin()">Login</li>
-          <li v-if="localStorage.getItem('x-jwt-token')">Hello {{ member.name }}</li>
-          <li v-if="localStorage.getItem('x-jwt-token')" @click="membersJwtLogout()">Logout</li>
+          <li v-if="!member.uid || !localStorage.getItem('x-jwt-token')" @click="membersJwtLogin()">Guest</li>
+          <li v-if="!member.uid || !localStorage.getItem('x-jwt-token')" @click="googleLogin()">Login</li>
+          <li v-if="member.uid && localStorage.getItem('x-jwt-token')">Hello {{ member.name }}</li>
+          <li v-if="member.uid && localStorage.getItem('x-jwt-token')" @click="membersJwtLogout()">Logout</li>
         </ul>
       </a>
     </div>
