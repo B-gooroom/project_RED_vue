@@ -22,10 +22,10 @@
       <a href="#" id="menu-a-account" @click.prevent="accountToggle()">
         <span class="material-icons-outlined">account_circle</span>
         <ul class="account-menu">
-          <li v-if="!member.uid" @click="emailSignin()">Guest</li>
-          <li v-if="!member.uid" @click="googleLogin()">Login</li>
-          <li v-if="member.uid">Hello {{ member.name }}</li>
-          <li v-if="member.uid" @click="googleLogout()">Logout</li>
+          <li v-if="!localStorage.getItem('x-jwt-token')" @click="membersJwtLogin()">Guest</li>
+          <li v-if="!localStorage.getItem('x-jwt-token')" @click="googleLogin()">Login</li>
+          <li v-if="localStorage.getItem('x-jwt-token')">Hello {{ member.name }}</li>
+          <li v-if="localStorage.getItem('x-jwt-token')" @click="membersJwtLogout()">Logout</li>
         </ul>
       </a>
     </div>
@@ -34,6 +34,7 @@
 
 <script>
 import firebase from 'firebase/app'
+import axios from 'axios'
 
 export default {
   computed: {
@@ -42,6 +43,9 @@ export default {
     },
     count() {
       return this.$store.state.items.count
+    },
+    localStorage() {
+      return localStorage
     }
   },
   methods: {
@@ -64,6 +68,14 @@ export default {
         console.error(error)
         alert(error.message)
       })
+    },
+    membersJwtLogin() {
+      this.$store.dispatch('membersJwtLogin')
+    },
+    membersJwtLogout() {
+      localStorage.removeItem('x-jwt-token')
+      axios.defaults.headers.common['x-jwt-token'] = null
+      window.location.reload()
     }
   },
   created() {
